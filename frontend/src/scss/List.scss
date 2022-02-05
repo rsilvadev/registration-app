@@ -1,0 +1,46 @@
+@import 'variables';
+
+$border-color: #aaaaaa;
+
+.table-container {
+  width: 50%;
+  padding: 20px;
+
+  .table-box {
+    height: 80%;
+    overflow: auto;
+    border: 2px solid $main-color;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      tr {
+        th, td {
+          padding: 4px;
+          text-align: left;
+          cursor: pointer;
+        }
+
+        th {
+          border-bottom: 1px solid $border-color;
+        }
+
+        td {
+          border-top: 1px solid $border-color;
+        }
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+
+    label {
+      color: $main-color;
+      font-weight: bold;
+    }
+  }
+}
