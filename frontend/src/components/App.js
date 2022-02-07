@@ -16,11 +16,11 @@ const App = () => {
 
 	const calculateAge = (submittedDate) => {
 		const currentDate = new Date();
-		const currentYearDate = submittedDate;
+		const currentYearDate = new Date(submittedDate.getTime());
 		
-		currentDate.setFullYear(currentDate.getFullYear());
+		currentYearDate.setFullYear(currentDate.getFullYear());
 
-		return Math.floor((currentDate - submittedDate) / (1000 * 3600 * 24 * 365)) + ((currentDate - currentYearDate) >= 0 ? 1 : 0);
+		return currentDate.getFullYear() - submittedDate.getFullYear() + ((currentDate - currentYearDate) >= 0 ? 1 : 0);
 	};
 
 	const showMessage = (item = null) => {
