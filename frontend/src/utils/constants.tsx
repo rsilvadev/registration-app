@@ -12,3 +12,10 @@ export const months = [
 	'November',
 	'December'
 ];
+
+export interface Item {
+  name: string;
+  surname: string;
+  country: string;
+  birthday: string;
+}

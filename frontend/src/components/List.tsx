@@ -1,6 +1,13 @@
+import React from 'react';
 import '../scss/List.scss';
+import { Item } from '../utils/constants';
 
-const List = ({ data, showMessage }) => {
+type ListProps = {
+  data: Item[];
+  showMessage: Function;
+}
+
+const List: React.FC<ListProps> = ({ data, showMessage }) => {
   return(
     <div className="table-container">
       <div className="table-box">
@@ -13,7 +20,7 @@ const List = ({ data, showMessage }) => {
             </tr>
           </thead>
           <tbody>
-            { data.map((item, idx) => (
+            { data.map((item: Item, idx: number) => (
               <tr key={idx} onClick={() => showMessage(item)}>
                 <td>{`${item.name} ${item.surname}`}</td>
                 <td>{ item.country }</td>

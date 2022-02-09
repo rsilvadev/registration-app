@@ -1,29 +1,29 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import "../scss/App.scss";
-import { months } from '../utils/constants';
+import { months, Item } from '../utils/constants';
 import Form from './Form';
 import List from './List';
 
 const App = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<Item>({
 		name: '',
 		surname: '',
 		country: '',
 		birthday: ''
 	});
-	const [data, setData] = useState([]);
-	const [message, setMessage] = useState('');
+	const [data, setData] = useState<Item[]>([]);
+	const [message, setMessage] = useState<string>('');
 
-	const calculateAge = (submittedDate) => {
-		const currentDate = new Date();
+	const calculateAge = (submittedDate: Date): number => {
+		const currentDate= new Date();
 		const currentYearDate = new Date(submittedDate.getTime());
 		
 		currentYearDate.setFullYear(currentDate.getFullYear());
 
-		return currentDate.getFullYear() - submittedDate.getFullYear() + ((currentDate - currentYearDate) >= 0 ? 1 : 0);
+		return currentDate.getFullYear() - submittedDate.getFullYear() + ((currentDate.valueOf() - currentYearDate.valueOf()) >= 0 ? 1 : 0);
 	};
 
-	const showMessage = (item = null) => {
+	const showMessage = (item: Item | null = null) => {
 		const info = item ? item : formData;
     const submittedDate = new Date(item ? item.birthday : formData.birthday);
 		

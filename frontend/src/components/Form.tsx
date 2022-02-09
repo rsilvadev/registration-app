@@ -1,10 +1,26 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Item } from '../utils/constants';
 import Loading from './Loading';
 import '../scss/Form.scss';
 
-const Form = ({ formData, setFormData, data, setData, showMessage, message }) => {
-  const [countries, setCountries] = useState([]);
-	const [loading, setLoading] = useState(true);
+type FormProps = {
+  formData: Item;
+  setFormData: Function;
+  data: Item[];
+  setData: Function;
+  showMessage: Function;
+  message: string;
+}
+
+interface countriesInterface {
+  _id: string;
+  name: string;
+  __v: number;
+}
+
+const Form:React.FC<FormProps> = ({ formData, setFormData, data, setData, showMessage, message }) => {
+  const [countries, setCountries] = useState<countriesInterface[]>([]);
+	const [loading, setLoading] = useState<boolean>(true);
 
 	useEffect(() => {
     fetch("http://localhost:5000/countries")
@@ -15,7 +31,7 @@ const Form = ({ formData, setFormData, data, setData, showMessage, message }) =>
       });
 	}, []);
   
-  const submitForm = (e) => {
+  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		setData([...data, formData]);
@@ -30,7 +46,7 @@ const Form = ({ formData, setFormData, data, setData, showMessage, message }) =>
 		});
 	};
 
-	const updateFormData = (field, e) => {
+	const updateFormData = (field: string, e: React.ChangeEvent<HTMLInputElement|HTMLSelectElement>) => {
 		setFormData({...formData, [field]: e.target.value});
 	};
   
