@@ -23,4 +23,6 @@ yarn-error.log*
 
 /*/node_modules
 
+/backend/.env
+
 .vscode
